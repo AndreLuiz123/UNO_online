@@ -13,7 +13,12 @@ class Carta{
     desenhar(ctx){
         ctx.fillStyle = "black";
         ctx.fillRect(this.x,this.y,this.w, this.h);
+        ctx.fillStyle = this.cor;
+        ctx.font = "50px Verdana";
+        ctx.fillText(this.numero, this.x+ 20,this.y+50);
     }
+    
+
 
 
 }

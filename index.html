@@ -34,7 +34,10 @@
         D : 0
     }
 
-    var carta = new Carta();
+    var carta = new Carta(5, 'blue');
+    var carta2 = new Carta(7, 'green');
+    var carta3 = new Carta(9, 'red');
+    var carta4 = new Carta(5, 'yellow');
 
     
     function passo(t)//Main loop
@@ -45,27 +48,51 @@
         ctx.fillRect(0,0,canvas.width, canvas.height);
         
         carta.desenhar(ctx);
+        carta2.desenhar(ctx);
+        carta3.desenhar(ctx);
+        carta4.desenhar(ctx);
+
 
         anterior = t;
         requestAnimationFrame(passo);
     }
 
+    
+    
+    
+    
+    
+    
+    //Coordena interação com as cartas
     canvas.onmousedown = mydown;
     canvas.onmouseup = myup;
 
+    var cartaMovimentada = carta2;
+
     function mydown(e){
-      if(e.pageX<= carta.x + carta.w && e.pageX>= carta.x && e.pageY<= carta.y + carta.h && e.pageY>= carta.y)
+      if(e.pageX<= carta.x + carta.w && e.pageX> carta.x && e.pageY<= carta.y + carta.h && e.pageY>= carta.y)
+        cartaMovimentada = carta;
+      else if(e.pageX<= carta2.x + carta2.w && e.pageX> carta2.x && e.pageY<= carta2.y + carta2.h && e.pageY>= carta2.y)
+        cartaMovimentada = carta2;
+      else if(e.pageX<= carta3.x + carta3.w && e.pageX> carta3.x && e.pageY<= carta3.y + carta3.h && e.pageY>= carta3.y)
+        cartaMovimentada = carta3;
+
        canvas.onmousemove = mymove;
     }
 
     function mymove(e){
-        carta.x = e.pageX - carta.w/2;
-        carta.y = e.pageY - carta.h/2;
+        if(cartaMovimentada)
+        {
+            cartaMovimentada.x = e.pageX - cartaMovimentada.w/2;
+            cartaMovimentada.y = e.pageY - cartaMovimentada.h/2;
+        }
     }
 
     function myup(e){
         canvas.onmousemove = null;
+        cartaMovimentada = null;
     }
+
 
     requestAnimationFrame(passo);
 
