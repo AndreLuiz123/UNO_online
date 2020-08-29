@@ -36,6 +36,7 @@
 
     var carta = new Carta();
 
+    
     function passo(t)//Main loop
     {
         dt = (t - anterior)/1000;
@@ -47,6 +48,21 @@
 
         anterior = t;
         requestAnimationFrame(passo);
+    }
+
+    canvas.onmousedown = mydown;
+    canvas.onmouseup = myup;
+
+    function mydown(e){
+       canvas.onmousemove = mymove;
+    }
+
+    function mymove(e){
+        console.log(e.pageX);
+    }
+
+    function myup(e){
+        canvas.onmousemove = null;
     }
 
     requestAnimationFrame(passo);
