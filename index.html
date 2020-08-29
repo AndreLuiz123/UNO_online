@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uno</title>
     <script  src="Carta.js"></script>
+    <script  src="Mao.js"></script>
 </head>
 <body>
     
@@ -39,6 +40,13 @@
     var carta3 = new Carta(9, 'red');
     var carta4 = new Carta(5, 'yellow');
 
+    var mao = new Mao();
+
+    mao.compraCarta(carta);
+    mao.compraCarta(carta2);
+    mao.compraCarta(carta3);
+    mao.compraCarta(carta4);
+
     
     function passo(t)//Main loop
     {
@@ -47,10 +55,7 @@
         ctx.fillStyle = "red";
         ctx.fillRect(0,0,canvas.width, canvas.height);
         
-        carta.desenhar(ctx);
-        carta2.desenhar(ctx);
-        carta3.desenhar(ctx);
-        carta4.desenhar(ctx);
+        mao.desenhar(ctx);
 
 
         anterior = t;
@@ -76,6 +81,10 @@
         cartaMovimentada = carta2;
       else if(e.pageX<= carta3.x + carta3.w && e.pageX> carta3.x && e.pageY<= carta3.y + carta3.h && e.pageY>= carta3.y)
         cartaMovimentada = carta3;
+      else if(e.pageX<= carta4.x + carta4.w && e.pageX> carta4.x && e.pageY<= carta4.y + carta4.h && e.pageY>= carta4.y)
+        cartaMovimentada = carta4;
+
+        
 
        canvas.onmousemove = mymove;
     }
