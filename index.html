@@ -72,8 +72,9 @@
     canvas.onmousedown = mydown;
     canvas.onmouseup = myup;
 
-    var cartaMovimentada = carta2;
+    
 
+    var cartaMovimentada;
     function mydown(e){
       if(e.pageX<= carta.x + carta.w && e.pageX> carta.x && e.pageY<= carta.y + carta.h && e.pageY>= carta.y)
         cartaMovimentada = carta;
@@ -84,7 +85,7 @@
       else if(e.pageX<= carta4.x + carta4.w && e.pageX> carta4.x && e.pageY<= carta4.y + carta4.h && e.pageY>= carta4.y)
         cartaMovimentada = carta4;
 
-        
+        cartaMovimentada.agarrada = true;
 
        canvas.onmousemove = mymove;
     }
@@ -99,6 +100,7 @@
 
     function myup(e){
         canvas.onmousemove = null;
+        mao.reposicionaCarta();
         cartaMovimentada = null;
     }
 

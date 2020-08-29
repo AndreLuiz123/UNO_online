@@ -8,6 +8,7 @@ class Carta{
         this.y = 30;
         this.w = 200;
         this.h = 300;
+        this.agarrada = false
     }
 
     desenhar(ctx){
