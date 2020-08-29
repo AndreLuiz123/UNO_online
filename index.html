@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uno</title>
+</head>
+<body>
+    
+<canvas></canvas>
+
+<script>
+            
+    var canvas = document.querySelector("canvas");
+    canvas.width = 900;
+    canvas.height = 500;
+    
+    var dt = 0;
+    var anterior = 0;
+    var ctx = canvas.getContext("2d");
+    
+    var teclas = {
+        cima : 0,
+        esquerda : 0,
+        direita : 0,
+        baixo : 0,
+        espaco : 0,
+        Q : 0,
+        W : 0,
+        E : 0,
+        A : 0,
+        S : 0,
+        D : 0
+    }
+
+    function passo(t)//Main loop
+    {
+        dt = (t - anterior)/1000;
+
+        ctx.fillStyle = "red";
+        ctx.fillRect(0,0,canvas.width, canvas.height);
+    
+
+        anterior = t;
+        requestAnimationFrame(passo);
+    }
+
+    requestAnimationFrame(passo);
+
+</script>
+
+</body>
+</html>
