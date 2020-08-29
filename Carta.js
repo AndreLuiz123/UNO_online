@@ -15,4 +15,5 @@ class Carta{
         ctx.fillRect(this.x,this.y,this.w, this.h);
     }
 
+
 }

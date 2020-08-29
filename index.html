@@ -54,11 +54,13 @@
     canvas.onmouseup = myup;
 
     function mydown(e){
+      if(e.pageX<= carta.x + carta.w && e.pageX>= carta.x && e.pageY<= carta.y + carta.h && e.pageY>= carta.y)
        canvas.onmousemove = mymove;
     }
 
     function mymove(e){
-        console.log(e.pageX);
+        carta.x = e.pageX - carta.w/2;
+        carta.y = e.pageY - carta.h/2;
     }
 
     function myup(e){
