@@ -22,15 +22,15 @@ class Bolo{
     }
 
     embaralhar(){
-        if(cartas.length>1)
+        if(this.cartas.length>1)
         {
-            for (let indice = cartas.length; indice; indice--) {
+            for (let indice = this.cartas.length; indice; indice--) {
             
                 const indiceAleatorio = Math.floor(Math.random() * indice);
             
                 // atribuição via destructuring
-                [cartas[indice - 1], cartas[indiceAleatorio]] = 
-                    [cartas[indiceAleatorio], cartas[indice - 1]];
+                [this.cartas[indice - 1], this.cartas[indiceAleatorio]] = 
+                    [this.cartas[indiceAleatorio], this.cartas[indice - 1]];
             }
         }
     }

@@ -37,22 +37,25 @@
         D : 0
     }
 
-    var carta = new Carta(5, 'blue');
+    /*var carta = new Carta(5, 'blue');
     var carta2 = new Carta(7, 'green');
     var carta3 = new Carta(9, 'yellow');
-    var carta4 = new Carta(6, 'yellow');
+    var carta4 = new Carta(6, 'yellow');*/
 
+    
+    
     var mao = new Mao();
-
+    
     var areaDeposito = new AreaDeposito();
     var bolo = new Bolo();
-
-
-    mao.compraCarta(carta);
-    mao.compraCarta(carta2);
-    mao.compraCarta(carta3);
-    mao.compraCarta(carta4);
-
+    
+    
+    for(var i=0; i<73; i++)
+    {
+        var carta = new Carta(i);
+        bolo.recebeCarta(carta);
+    }
+    bolo.embaralhar();
     
     function passo(t)//Main loop
     {
@@ -87,6 +90,15 @@
 
     var cartaMovimentada;
     function mydown(e){
+ 
+      if(e.pageX<= bolo.x + bolo.w && e.pageX> bolo.x && e.pageY<= bolo.y + bolo.h && e.pageY>= bolo.y) 
+      {
+          if(bolo.cartas.length>0)
+          {
+            mao.compraCarta(bolo.perdeCarta());
+          }
+      }  
+
       for(var i=0; i<mao.mao.length; i++)
       {
         if(e.pageX<= mao.mao[i].x + mao.mao[i].w && e.pageX> mao.mao[i].x && e.pageY<= mao.mao[i].y + mao.mao[i].h && e.pageY>= mao.mao[i].y)
@@ -118,6 +130,7 @@
 
         cartaMovimentada = null;
     }
+
 
 
     requestAnimationFrame(passo);

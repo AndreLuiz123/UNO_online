@@ -1,9 +1,49 @@
 class Carta{
 
-    constructor(numero=0, cor='red'){
- 
-        this.numero = numero;
-        this.cor = cor;
+    constructor(id=0){
+        this.id = id;
+        this.numero = id%9;
+
+        switch(Math.floor(id/9))
+        {
+            case 0:
+                console.log(Math.floor(id/9));
+                this.cor = 'red';
+            break;
+            case 1:
+                console.log(Math.floor(id/9));
+                this.cor = 'green';
+            break;
+            case 2:
+                console.log(Math.floor(id/9));
+                this.cor = 'blue';
+            break;
+            case 3:
+                console.log(Math.floor(id/9));
+                this.cor = 'yellow';
+            break;
+            case 4:
+                console.log(Math.floor(id/9));
+                this.cor = 'red';
+            break;
+            case 5:
+                console.log(Math.floor(id/9));
+                this.cor = 'green';
+            break;
+            case 6:
+                console.log(Math.floor(id/9));
+                this.cor = 'blue';
+            break;
+            case 7:
+                console.log(Math.floor(id/9));
+                this.cor = 'yellow';
+            break;
+            default:
+                console.log(Math.floor(id/9));
+                this.cor = 'grey';
+            break;
+        }
+
         this.x = 30;
         this.y = 30;
         this.w = 200;
