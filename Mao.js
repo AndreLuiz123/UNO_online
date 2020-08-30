@@ -7,7 +7,7 @@ class Mao{
     compraCarta(carta){
         this.mao.push(carta);
         this.mao[this.mao.length-1].x = (this.mao.length-1)*this.mao[this.mao.length-1].w + 10*(this.mao.length-1);
-        this.mao[this.mao.length-1].y = 200;
+        this.mao[this.mao.length-1].y = 500 - this.mao[this.mao.length-1].h/2;
     }
 
     puxaCarta(i){
@@ -17,6 +17,11 @@ class Mao{
     desenhar(ctx){
         for(var i=0; i<this.mao.length; i++)
         {
+            if(this.mao[i].y +this.mao[i].h/2 < 250)
+                this.mao[i].diminuiCarta();
+            else
+                this.mao[i].aumentaCarta();
+
             this.mao[i].desenhar(ctx);
         }
     }
@@ -26,8 +31,9 @@ class Mao{
         {
             if(this.mao[i].agarrada){
                 this.mao[i].agarrada = false;
+                this.mao[i].aumentaCarta();
                 this.mao[i].x = (i)*this.mao[i].w + 10*(i);
-                this.mao[i].y = 200;
+                this.mao[i].y = 500 - this.mao[i].h/2;
                 return;
             }
         }
