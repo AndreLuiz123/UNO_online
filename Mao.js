@@ -14,6 +14,12 @@ class Mao{
        return this.mao[i];
     }
 
+    depositaCarta(i){
+        console.log(this.mao);
+        this.mao.splice(this.mao.findIndex(j => j.numero === i), 1);
+        console.log(this.mao);
+    }
+
     desenhar(ctx){
         for(var i=0; i<this.mao.length; i++)
         {
@@ -36,6 +42,17 @@ class Mao{
                 this.mao[i].y = 500 - this.mao[i].h/2;
                 return;
             }
+        }
+        return;
+    }
+
+    reposicionaTodasCartas(){
+        for(var i=0; i<this.mao.length; i++)
+        {
+                this.mao[i].agarrada = false;
+                this.mao[i].aumentaCarta();
+                this.mao[i].x = (i)*this.mao[i].w + 10*(i);
+                this.mao[i].y = 500 - this.mao[i].h/2;            
         }
         return;
     }

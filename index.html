@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Uno</title>
-    <script  src="Carta.js"></script>
-    <script  src="Mao.js"></script>
+    <script src="Carta.js"></script>
+    <script src="Mao.js"></script>
+    <script src="AreaDeposito.js"></script>
+    <script src="Bolo.js"></script>
 </head>
 <body>
     
@@ -37,10 +39,14 @@
 
     var carta = new Carta(5, 'blue');
     var carta2 = new Carta(7, 'green');
-    var carta3 = new Carta(9, 'red');
-    var carta4 = new Carta(5, 'yellow');
+    var carta3 = new Carta(9, 'yellow');
+    var carta4 = new Carta(6, 'yellow');
 
     var mao = new Mao();
+
+    var areaDeposito = new AreaDeposito();
+    var bolo = new Bolo();
+
 
     mao.compraCarta(carta);
     mao.compraCarta(carta2);
@@ -54,9 +60,12 @@
 
         ctx.fillStyle = "red";
         ctx.fillRect(0,0,canvas.width, canvas.height);
-        
-        mao.desenhar(ctx);
 
+        areaDeposito.desenhar(ctx);
+        bolo.desenhar(ctx);
+
+        mao.desenhar(ctx);
+        
         
 
 
@@ -78,15 +87,12 @@
 
     var cartaMovimentada;
     function mydown(e){
-      if(e.pageX<= carta.x + carta.w && e.pageX> carta.x && e.pageY<= carta.y + carta.h && e.pageY>= carta.y)
-        cartaMovimentada = carta;
-      else if(e.pageX<= carta2.x + carta2.w && e.pageX> carta2.x && e.pageY<= carta2.y + carta2.h && e.pageY>= carta2.y)
-        cartaMovimentada = carta2;
-      else if(e.pageX<= carta3.x + carta3.w && e.pageX> carta3.x && e.pageY<= carta3.y + carta3.h && e.pageY>= carta3.y)
-        cartaMovimentada = carta3;
-      else if(e.pageX<= carta4.x + carta4.w && e.pageX> carta4.x && e.pageY<= carta4.y + carta4.h && e.pageY>= carta4.y)
-        cartaMovimentada = carta4;
-
+      for(var i=0; i<mao.mao.length; i++)
+      {
+        if(e.pageX<= mao.mao[i].x + mao.mao[i].w && e.pageX> mao.mao[i].x && e.pageY<= mao.mao[i].y + mao.mao[i].h && e.pageY>= mao.mao[i].y)
+          cartaMovimentada = mao.mao[i];
+      }
+      if(cartaMovimentada)
         cartaMovimentada.agarrada = true;
 
        canvas.onmousemove = mymove;
@@ -102,7 +108,14 @@
 
     function myup(e){
         canvas.onmousemove = null;
+
+        if(cartaMovimentada)
+        if(cartaMovimentada.x + cartaMovimentada.w/2 >= areaDeposito.x && cartaMovimentada.x + cartaMovimentada.w/2<= areaDeposito.x + areaDeposito.w && 
+        cartaMovimentada.y + cartaMovimentada.h/2>= areaDeposito.y && cartaMovimentada.y + cartaMovimentada.h/2<= areaDeposito.y + areaDeposito.h)
+        areaDeposito.recebeCarta(mao, cartaMovimentada);
+        else
         mao.reposicionaCarta();
+
         cartaMovimentada = null;
     }
 

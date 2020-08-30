@@ -1,7 +1,7 @@
 class Carta{
 
     constructor(numero=0, cor='red'){
-
+ 
         this.numero = numero;
         this.cor = cor;
         this.x = 30;
@@ -25,7 +25,6 @@ class Carta{
     diminuiCarta(){
         this.w = 100;
         this.h = 150;
-        this.font = 5;
         this.fonteX = 2;
         this.fontey = 5;     
     }
@@ -33,7 +32,6 @@ class Carta{
     aumentaCarta(){
         this.w = 200;
         this.h = 300;
-        this.font = 50;
         this.fonteX = 20;
         this.fontey = 50;     
     }
