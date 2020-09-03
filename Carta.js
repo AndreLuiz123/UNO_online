@@ -55,11 +55,14 @@ class Carta{
     }
 
     desenhar(ctx){
-        ctx.fillStyle = "black";
-        ctx.fillRect(this.x,this.y,this.w, this.h);
         ctx.fillStyle = this.cor;
+        ctx.strokeStyle = "black";
+        ctx.fillRect(this.x,this.y,this.w, this.h);
+        ctx.strokeRect(this.x,this.y,this.w, this.h);
+        ctx.fillStyle = "black";
         ctx.font = this.fonte+"px Verdana";
         ctx.fillText(this.numero, this.x+ this.fonteX,this.y+this.fonteY);
+        ctx.strokeText(this.numero, this.x+ this.fonteX,this.y+this.fonteY)
     }
 
     diminuiCarta(){

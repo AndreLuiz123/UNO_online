@@ -32,7 +32,7 @@ class AreaDeposito{
             carta.x = 375;
             carta.y = 150;
             carta.agarrada = false;
-            mao.depositaCarta(carta.numero);    
+            mao.depositaCarta(carta.id);    
             mao.reposicionaTodasCartas();        
         }else{
 
@@ -45,7 +45,7 @@ class AreaDeposito{
                 carta.x = 375;
                 carta.y = 150;
                 carta.agarrada = false;
-                mao.depositaCarta(carta.numero);
+                mao.depositaCarta(carta.id);
                 mao.reposicionaTodasCartas();
             }else{
                 mao.reposicionaCarta(carta);

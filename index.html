@@ -23,27 +23,6 @@
     var anterior = 0;
     var ctx = canvas.getContext("2d");
     
-    var teclas = {
-        cima : 0,
-        esquerda : 0,
-        direita : 0,
-        baixo : 0,
-        espaco : 0,
-        Q : 0,
-        W : 0,
-        E : 0,
-        A : 0,
-        S : 0,
-        D : 0
-    }
-
-    /*var carta = new Carta(5, 'blue');
-    var carta2 = new Carta(7, 'green');
-    var carta3 = new Carta(9, 'yellow');
-    var carta4 = new Carta(6, 'yellow');*/
-
-    
-    
     var mao = new Mao();
     
     var areaDeposito = new AreaDeposito();
@@ -78,15 +57,9 @@
 
     
     
-    
-    
-    
-    
     //Coordena interação com as cartas
     canvas.onmousedown = mydown;
     canvas.onmouseup = myup;
-
-    
 
     var cartaMovimentada;
     function mydown(e){
@@ -96,6 +69,7 @@
           if(bolo.cartas.length>0)
           {
             mao.compraCarta(bolo.perdeCarta());
+            mao.reposicionaTodasCartas();
           }
       }  
 
@@ -130,8 +104,6 @@
 
         cartaMovimentada = null;
     }
-
-
 
     requestAnimationFrame(passo);
 
