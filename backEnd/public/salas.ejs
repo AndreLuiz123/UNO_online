@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista salas</title>
+</head>
+<body>
+    <h1>Insira seu nick:</h1>
+    <input type="text" name="nick" id="nick" placeholder="Insira seu nick">
+    <h1>Salas públicas:</h1>
+    <% for(const i of salas){ %> 
+        <button onclick='redirect("<%= i.id %>")'>
+            <h2>Sala <%= i.id %></h2>
+            <h3>Conectados: <%= i.conectados %></h3>
+        </button>
+    <% } %>
+    <h1>Sala privada</h1>
+    <h3>Para entrar em uma sala não listada ou criar uma sala, por favor, entre com o nome da sala:</h3>
+    <input type="text" name="sala" id="sala" placeholder="Insira seu nick">
+    <% if(erro){%>
+        <div id='erro'>
+        <% if(erro==1){ %>
+            <h1>SALA INVÁLIDA!!!</h1>
+        </div>
+        <% }else if(erro==2){ %>
+            <h1>SALA CHEIA!!!</h1>
+        <%}
+    }%>
+    <script type="text/javascript">
+        const sala = document.getElementById('sala');
+        sala.addEventListener('keydown', function(e){
+            if(e.keyCode==13){
+                redirect(sala.value);
+            }
+        });
+        function redirect(sala){
+            if(!sala){
+                alert('Para criar ou entrar em uma sala privada por favor entre com o nome da sala');
+            }else{
+                const nick = document.getElementById('nick').value;
+                if(nick){
+                    window.location.href = "/sala/"+sala+"?nick="+nick;
+                }else{
+                    alert("Antes de entrar em uma sala por favor entre com seu nick");
+                }
+            }
+        }
+
+
+    </script>
+</body>
+</html>

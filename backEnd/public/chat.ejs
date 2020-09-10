@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha512-v8ng/uGxkge3d1IJuEo6dJP8JViyvms0cly9pnbfRxT6/31c3dRWxIiwGnMSWwZjHKOuY3EVmijs7k1jz/9bLA==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <script type="text/javascript">
+        const socket = io('<%=link%>');
+        socket.emit('joinRoom',{'sala':'<%=sala%>','nick':'<%=nick%>'});
+        socket.on('erro',(d)=>(window.location.href = '/salas?err=' + d.erro));
+    </script>
+    <div id="nomeSala">
+        <h1>Sala: <%=sala%> </h1>
+    </div>
+    <button id='pronto'>Clique para ficar pronto</button>
+    <button id='Npronto'>Clique para desficar pronto</button>
+    <div id="mensagens">
+        
+    </div><br>    
+    <input type="text" id='inputMensagem' placeholder="Digite sua  mensagem"><br>
+    
+    <script type="text/javascript">
+        function adiciona(mensagem){
+            document.getElementById('mensagens').innerHTML+="<b>" + mensagem.autor + "</b>: " + mensagem.msg + "<br>";
+        }
+
+        document.getElementById('pronto').addEventListener('click', function(e){
+            socket.emit('ready',{});
+        });
+
+        document.getElementById('Npronto').addEventListener('click', function(e){
+            socket.emit('unready',{});
+        });
+
+        document.getElementById('inputMensagem').addEventListener('keydown', function(e){
+            if(e.keyCode==13){
+                enviar();
+            }
+        });
+        
+        socket.on('resposta',(d)=>adiciona(d));
+
+        function enviar(){
+            const mensagem = document.getElementById('inputMensagem');
+            if(mensagem.value)
+                socket.emit('mensagem',{"mensagem":mensagem.value})
+            mensagem.value='';
+        }
+    </script>
+</body>
+</html>
